@@ -1,0 +1,69 @@
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js"; // Import Realtime Database methods
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBwKZx7zGayg6NLVt0wsDLOV2j3IMo4Lh0",
+      authDomain: "car-parking-management-s-1f1d8.firebaseapp.com",
+      databaseURL: "https://car-parking-management-s-1f1d8-default-rtdb.firebaseio.com",
+      projectId: "car-parking-management-s-1f1d8",
+      storageBucket: "car-parking-management-s-1f1d8.firebasestorage.app",
+      messagingSenderId: "314331985346",
+      appId: "1:314331985346:web:dff9f9f08b8cf3a120525b",
+      measurementId: "G-0FNLYV6SXT"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  
+    // Initialize Realtime Database
+    const db = getDatabase(app);
+  
+    // Define the parking spots structure
+    const parkingSpots = {
+      1: {
+        A: {},
+        B: {},
+        C: {},
+        D: {}
+      },
+      2: {
+        A: {},
+        B: {},
+        C: {},
+        D: {}
+      }
+    };
+  
+    // Loop through the structure to initialize all spots with default values
+    for (const floor in parkingSpots) {
+      for (const block in parkingSpots[floor]) {
+        parkingSpots[floor][block] = {};
+        for (let i = 1; i <= 10; i++) {
+          const spotKey = `spot_${i}`;
+          parkingSpots[floor][block][spotKey] = {
+            vehicleNo: "",
+            name: "",
+            time: "",
+            typeOfVehicle: "",
+            status: "free"
+          };
+        }
+      }
+    }
+  
+    // Write the parking spots data to the Firebase Realtime Database
+    const parkingSpotsRef = ref(db, 'parking_spots');
+    set(parkingSpotsRef, parkingSpots)
+      .then(() => {
+        console.log('Parking spots initialized successfully!');
+      })
+      .catch((error) => {
+        console.error('Error initializing parking spots:', error);
+      });
+  </script>
+  

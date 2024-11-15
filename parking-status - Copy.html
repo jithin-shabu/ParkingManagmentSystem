@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Status - Parking Management System</title>
+    <link rel="stylesheet" href="parkingstatusstyle.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Parking Status</h1>
+
+    <!-- Display the parking details -->
+    <div id="detailsDisplay">
+        <h2>Parking Details</h2>
+        <p id="displayVehicleNumber"></p>
+        <p id="displayName"></p>
+        <p id="displayVehicleType"></p>
+        <p id="displayEntryTime"></p>
+        <p id="displayFloor"></p>
+        <p id="displayBlock"></p>
+        <p id="displaySpot"></p>
+    </div>
+    
+    <button onclick="window.location.href='index.html'">Back to Parking Form</button>
+</div>
+
+<script>
+// Function to extract query parameters from URL
+function getQueryParams() {
+  const params = new URLSearchParams(window.location.search);
+  const data = {};
+  params.forEach((value, key) => {
+    data[key] = value;
+  });
+  return data;
+}
+
+// Function to display parking details
+function displayParkingDetails() {
+  const params = getQueryParams();
+
+  // Displaying data in the HTML elements
+  document.getElementById("displayVehicleNumber").textContent = `Vehicle Number: ${params.vehicleNo}`;
+  document.getElementById("displayName").textContent = `Name: ${params.name}`;
+  document.getElementById("displayVehicleType").textContent = `Vehicle Type: ${params.typeOfVehicle}`;
+  document.getElementById("displayEntryTime").textContent = `Entry Time: ${params.time}`;
+  document.getElementById("displayFloor").textContent = `Allocated Floor: ${params.floor}`;
+  document.getElementById("displayBlock").textContent = `Allocated Block: ${params.block}`;
+  document.getElementById("displaySpot").textContent = `Allocated Spot: ${params.spot}`;
+}
+
+// Call the function to display details when the page loads
+window.onload = displayParkingDetails;
+</script>
+
+</body>
+</html>

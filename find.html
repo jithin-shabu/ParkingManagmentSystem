@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find My Car - Parking Management System</title>
+
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="find.css">
+
+    <!-- Firebase SDK -->
+    <script type="module" src="findpaking.js"></script> <!-- External JS file linking -->
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Find Your Parked Vehicle</h1>
+
+        <!-- Vehicle Number Input -->
+        <label for="vehicleNumber">Vehicle Number</label>
+        <input type="text" id="vehicleNumber" placeholder="Enter vehicle number" required>
+
+        <!-- Submit Button -->
+        <button onclick="findParkingSpot()">Find Parking</button>
+
+        <!-- Display Area for Parking Spot Details -->
+        <div id="parkingDetails" style="display: none;">
+            <h2>Parking Spot Details</h2>
+            <p id="displayFloorNumber"></p>
+            <p id="displayBlockName"></p>
+            <p id="displaySpotNumber"></p>
+            <p id="displayVehicleNo"></p>
+            <p id="displayTypeOfVehicle"></p>
+            <p id="displayStatus"></p>
+            <p id="displayName"></p>
+            <p id="displayTime"></p>
+        </div>
+
+        <!-- Display No Spot Found Message -->
+        <div id="noSpotFound" style="display: none;">
+            <p>Sorry, no spot found for this vehicle number.</p>
+        </div>
+
+        <!-- Back to Main Page -->
+        <button onclick="window.location.href='index.html'">Back to Main Page</button>
+    </div>
+
+</body>
+
+</html>
